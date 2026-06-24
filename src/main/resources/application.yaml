@@ -6,6 +6,9 @@ spring:
     name: gateway-service
 
   cloud:
+    compatibility-verifier:
+      enabled: false
+      
     gateway:
       routes:
         # 1. MICROSERVICIO DE GÉNEROS
