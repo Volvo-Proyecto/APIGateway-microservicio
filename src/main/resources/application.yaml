@@ -1,3 +1,45 @@
+server:
+  port: 8080 # Puerto único y central 
+
 spring:
   application:
-    name: gateway
+    name: gateway-service
+
+  cloud:
+    gateway:
+      routes:
+        # 1. MICROSERVICIO DE GÉNEROS
+        - id: generos-service
+          uri: http://localhost:8081
+          predicates:
+            - Path=/api/v1/generos/**
+
+        # 2. MICROSERVICIO DE PLATAFORMAS
+        - id: plataformas-service
+          uri: http://localhost:8082
+          predicates:
+            - Path=/api/v1/plataformas/**
+
+        # 3. MICROSERVICIO DE VIDEOJUEGOS
+        - id: videojuegos-service
+          uri: http://localhost:8083
+          predicates:
+            - Path=/api/v1/juegos/**
+
+        # 4. MICROSERVICIO DE ESTUDIOS
+        - id: estudios-service
+          uri: http://localhost:8084
+          predicates:
+            - Path=/api/v1/estudios/**
+
+        # 5. MICROSERVICIO DE USUARIOS
+        - id: usuarios-service
+          uri: http://localhost:8085
+          predicates:
+            - Path=/api/v1/usuarios/**
+
+        # 6. MICROSERVICIO DE RESEÑAS
+        - id: resenas-service
+          uri: http://localhost:8086
+          predicates:
+            - Path=/api/v1/resenas/**
